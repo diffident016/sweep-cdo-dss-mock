@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { MenuIcon, X } from "lucide-react";
 import { Button } from "../ui/button";
+import { Link, useLocation } from "react-router-dom";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -10,6 +11,14 @@ interface MainLayoutProps {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const location = useLocation();
+
+  const navigationItems = [
+    { title: "Dashboard", href: "/" },
+    { title: "Technology Comparison", href: "/compare" },
+    { title: "Site Suggestions", href: "/sites" },
+    { title: "Policy Assistant", href: "/policy" },
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -32,19 +41,18 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         <nav className="h-full px-3 py-4 bg-card border-r">
           <h2 className="mb-6 text-lg font-semibold">CDO MSWIE DSS</h2>
           <ul className="space-y-2">
-            {[
-              { title: "Dashboard", href: "/" },
-              { title: "Technology Comparison", href: "/compare" },
-              { title: "Site Suggestions", href: "/sites" },
-              { title: "Policy Assistant", href: "/policy" },
-            ].map((item) => (
+            {navigationItems.map((item) => (
               <li key={item.title}>
-                <a
-                  href={item.href}
-                  className="flex items-center p-2 text-foreground hover:bg-accent rounded-lg"
+                <Link
+                  to={item.href}
+                  className={cn(
+                    "flex items-center p-2 text-foreground hover:bg-accent rounded-lg",
+                    location.pathname === item.href && "bg-accent/50"
+                  )}
+                  onClick={() => setSidebarOpen(false)}
                 >
                   {item.title}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
