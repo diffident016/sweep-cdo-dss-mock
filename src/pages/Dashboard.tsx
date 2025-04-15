@@ -2,6 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import MainLayout from "@/components/layout/MainLayout";
 import { ArrowUpIcon, ArrowDownIcon, Trash2, Zap } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const stats = [
   {
