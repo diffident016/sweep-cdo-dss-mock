@@ -1,5 +1,9 @@
+
 import MainLayout from "@/components/layout/MainLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import {
   BarChart,
   Bar,
@@ -13,7 +17,9 @@ import {
   Line,
   ScatterChart,
   Scatter,
-  ZAxis
+  ZAxis,
+  ComposedChart,
+  Area
 } from "recharts";
 
 const airEmissionsData = [
