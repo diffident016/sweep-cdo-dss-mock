@@ -1,24 +1,20 @@
-
 import MainLayout from "@/components/layout/MainLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
-  Legend, 
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
   ResponsiveContainer,
   LineChart,
   Line,
-  ComposedChart,
-  Area,
-  Scatter
+  ScatterChart,
+  Scatter,
+  ZAxis
 } from "recharts";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Progress } from "@/components/ui/progress";
 
 const airEmissionsData = [
   { name: 'Gasification', CO2: 250, NOx: 0.4, SO2: 0.05, PM: 15, Dioxins: 0.025 },
@@ -568,6 +564,7 @@ const EnvironmentalImpact = () => {
                       <CartesianGrid />
                       <XAxis type="number" dataKey="x" name="Environmental Score" unit="/100" />
                       <YAxis type="number" dataKey="y" name="Social Score" unit="/100" />
+                      <ZAxis type="number" dataKey="z" name="Carbon Score" unit="tCO₂e" />
                       <Tooltip cursor={{ strokeDasharray: '3 3' }} />
                       <Legend />
                       <Scatter 
@@ -580,7 +577,7 @@ const EnvironmentalImpact = () => {
                   </ResponsiveContainer>
                   <div className="text-sm text-muted-foreground text-center mt-4">
                     <p>Bubble size represents carbon emissions (lower is better)</p>
-                    <p>X-axis: Environmental score | Y-axis: Social acceptance score</p>
+                    <p>X-axis: Environmental score | Y-axis: Social acceptance score | Z-axis: Carbon emissions</p>
                   </div>
                 </CardContent>
               </Card>

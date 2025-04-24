@@ -62,6 +62,8 @@ const FinancialAnalysis = () => {
         annualOpex = operationalCost + (capacity * 365 * 25); // Basic O&M plus $25/ton processing
         carbonReduction = generatedEnergy * 0.0005; // tCO2e per year
         break;
+      default:
+        break;
     }
     
     // Calculate NPV & IRR
@@ -135,6 +137,7 @@ const FinancialAnalysis = () => {
     return irr;
   };
   
+  // Important: Calculate financials only once rather than repeatedly in the JSX
   const financials = calculateFinancials();
 
   return (
