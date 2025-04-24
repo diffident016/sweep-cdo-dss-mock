@@ -1,10 +1,12 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import MainLayout from "@/components/layout/MainLayout";
-import { ArrowUpIcon, ArrowDownIcon, Trash2, Zap, Activity } from "lucide-react";
+import { ArrowUpIcon, ArrowDownIcon, Trash2, Zap, Activity, BarChart, LineChart, Calculator, Map, FileText, Recycle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
 import { Progress } from "@/components/ui/progress";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const wasteData = [
   { month: "Jan", waste: 15000 },
@@ -39,6 +41,65 @@ const stats = [
     change: "+13%",
     increasing: true,
     progress: 78,
+  },
+];
+
+const dssModules = [
+  {
+    title: "Waste Analysis",
+    description: "Detailed waste characterization and composition analysis",
+    icon: Recycle,
+    href: "/waste-analysis",
+    color: "bg-blue-500/10 text-blue-500"
+  },
+  {
+    title: "Technology Comparison",
+    description: "Compare different waste-to-energy technologies",
+    icon: Zap,
+    href: "/compare",
+    color: "bg-amber-500/10 text-amber-500"
+  },
+  {
+    title: "Site Suggestions",
+    description: "Optimal locations for waste-to-energy facilities",
+    icon: Map,
+    href: "/sites",
+    color: "bg-green-500/10 text-green-500"
+  },
+  {
+    title: "Scenario Simulation",
+    description: "Model different waste management scenarios",
+    icon: LineChart,
+    href: "/simulation",
+    color: "bg-purple-500/10 text-purple-500"
+  },
+  {
+    title: "Financial Analysis",
+    description: "Evaluate economic feasibility and ROI",
+    icon: Calculator,
+    href: "/financial",
+    color: "bg-emerald-500/10 text-emerald-500"
+  },
+  {
+    title: "Environmental Impact",
+    description: "Assess environmental effects and mitigation",
+    icon: Trash2,
+    href: "/environmental",
+    color: "bg-red-500/10 text-red-500"
+  },
+  {
+    title: "Multi-Criteria Analysis",
+    description: "Weighted evaluation of multiple decision factors",
+    icon: Activity,
+    href: "/mcda",
+    color: "bg-indigo-500/10 text-indigo-500"
+  },
+  {
+    title: "Policy Assistant",
+    description: "Policy recommendations and compliance guidance",
+    icon: FileText,
+    href: "/policy",
+    color: "bg-cyan-500/10 text-cyan-500"
   },
 ];
 
@@ -150,6 +211,30 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </div>
+        
+        <Card>
+          <CardHeader>
+            <CardTitle>Decision Support System Modules</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {dssModules.map((module) => (
+                <Link to={module.href} key={module.title} className="block">
+                  <div className="border rounded-lg p-4 hover:bg-muted transition-colors h-full flex flex-col">
+                    <div className={cn("p-2 rounded-full w-fit mb-3", module.color)}>
+                      <module.icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="font-medium">{module.title}</h3>
+                    <p className="text-sm text-muted-foreground mt-1 mb-3">{module.description}</p>
+                    <Button variant="outline" className="w-full mt-auto">
+                      Open Module
+                    </Button>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </MainLayout>
   );

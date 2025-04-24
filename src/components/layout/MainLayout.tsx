@@ -1,7 +1,7 @@
 
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import { MenuIcon, X } from "lucide-react";
+import { MenuIcon, X, LineChart, BarChart, Trash2, Zap, Settings, Activity, Calculator, Map, FileText, Recycle } from "lucide-react";
 import { Button } from "../ui/button";
 import { Link, useLocation } from "react-router-dom";
 
@@ -14,10 +14,15 @@ const MainLayout = ({ children }: MainLayoutProps) => {
   const location = useLocation();
 
   const navigationItems = [
-    { title: "Dashboard", href: "/" },
-    { title: "Technology Comparison", href: "/compare" },
-    { title: "Site Suggestions", href: "/sites" },
-    { title: "Policy Assistant", href: "/policy" },
+    { title: "Dashboard", href: "/", icon: BarChart },
+    { title: "Waste Analysis", href: "/waste-analysis", icon: Recycle },
+    { title: "Technology Comparison", href: "/compare", icon: Zap },
+    { title: "Site Suggestions", href: "/sites", icon: Map },
+    { title: "Scenario Simulation", href: "/simulation", icon: LineChart },
+    { title: "Financial Analysis", href: "/financial", icon: Calculator },
+    { title: "Environmental Impact", href: "/environmental", icon: Trash2 },
+    { title: "Multi-Criteria Analysis", href: "/mcda", icon: Activity },
+    { title: "Policy Assistant", href: "/policy", icon: FileText },
   ];
 
   return (
@@ -46,11 +51,12 @@ const MainLayout = ({ children }: MainLayoutProps) => {
                 <Link
                   to={item.href}
                   className={cn(
-                    "flex items-center p-2 text-foreground hover:bg-accent rounded-lg",
+                    "flex items-center gap-3 p-2 text-foreground hover:bg-accent rounded-lg",
                     location.pathname === item.href && "bg-accent/50"
                   )}
                   onClick={() => setSidebarOpen(false)}
                 >
+                  <item.icon className="h-5 w-5" />
                   {item.title}
                 </Link>
               </li>

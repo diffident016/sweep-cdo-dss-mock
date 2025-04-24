@@ -9,6 +9,11 @@ import TechnologyComparison from "./pages/TechnologyComparison";
 import SiteSuggestions from "./pages/SiteSuggestions";
 import PolicyAssistant from "./pages/PolicyAssistant";
 import NotFound from "./pages/NotFound";
+import ScenarioSimulation from "./pages/ScenarioSimulation";
+import WasteAnalysis from "./pages/WasteAnalysis";
+import FinancialAnalysis from "./pages/FinancialAnalysis";
+import MultiCriteriaAnalysis from "./pages/MultiCriteriaAnalysis";
+import EnvironmentalImpact from "./pages/EnvironmentalImpact";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +28,11 @@ const App = () => (
           <Route path="/compare" element={<TechnologyComparison />} />
           <Route path="/sites" element={<SiteSuggestions />} />
           <Route path="/policy" element={<PolicyAssistant />} />
+          <Route path="/simulation" element={<ScenarioSimulation />} />
+          <Route path="/waste-analysis" element={<WasteAnalysis />} />
+          <Route path="/financial" element={<FinancialAnalysis />} />
+          <Route path="/mcda" element={<MultiCriteriaAnalysis />} />
+          <Route path="/environmental" element={<EnvironmentalImpact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
