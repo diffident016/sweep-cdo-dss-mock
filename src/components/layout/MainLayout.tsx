@@ -54,10 +54,14 @@ const MainLayout = ({ children }: MainLayoutProps) => {
                     asChild 
                     isActive={location.pathname === item.href}
                     tooltip={item.title}
+                    className="hover:bg-primary/10 transition-colors duration-200"
                   >
-                    <Link to={item.href} className="flex items-center gap-3">
+                    <Link 
+                      to={item.href} 
+                      className="flex items-center gap-3 w-full"
+                    >
                       <item.icon className="h-5 w-5" />
-                      <span>{item.title}</span>
+                      <span className="font-medium">{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
