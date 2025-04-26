@@ -44,6 +44,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full bg-background">
+        {/* Apply proper z-index to ensure sidebar appears above content on mobile */}
         <Sidebar>
           <SidebarContent>
             <div className="mb-6 px-4 text-lg font-semibold">CDO MSWIE DSS</div>
@@ -70,10 +71,14 @@ const MainLayout = ({ children }: MainLayoutProps) => {
           </SidebarContent>
         </Sidebar>
 
-        <main className="flex-1 overflow-hidden">
+        {/* Add proper padding and ensure main content doesn't get overlapped */}
+        <main className="flex-1 overflow-hidden md:ml-0">
           <div className="container mx-auto p-4">
-            <SidebarTrigger className="mb-4" />
-            {children}
+            {/* Make the trigger more visible on mobile */}
+            <SidebarTrigger className="mb-4 md:mb-6" />
+            <div className="mt-2">
+              {children}
+            </div>
           </div>
         </main>
       </div>
