@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { 
+import {
   Sidebar,
   SidebarContent,
   SidebarProvider,
@@ -8,17 +8,17 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
-import { 
-  BarChart, 
-  Recycle, 
-  Zap, 
-  Map, 
-  LineChart, 
-  Calculator, 
-  Trash2, 
-  Activity, 
+import {
+  BarChart,
+  Recycle,
+  Zap,
+  Map,
+  LineChart,
+  Calculator,
+  Trash2,
+  Activity,
   FileText,
-  LogOut
+  LogOut,
 } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -58,18 +58,18 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         {/* Apply proper z-index to ensure sidebar appears above content on mobile */}
         <Sidebar>
           <SidebarContent>
-            <div className="mb-6 px-4 text-lg font-semibold">CDO MSWIE DSS</div>
+            <div className="mb-6 px-4 text-lg font-semibold">SWEEP CDO DSS</div>
             <SidebarMenu>
               {navigationItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton 
-                    asChild 
+                  <SidebarMenuButton
+                    asChild
                     isActive={location.pathname === item.href}
                     tooltip={item.title}
                     className="hover:bg-primary/10 transition-colors duration-200"
                   >
-                    <Link 
-                      to={item.href} 
+                    <Link
+                      to={item.href}
                       className="flex items-center gap-3 w-full"
                     >
                       <item.icon className="h-5 w-5" />
@@ -78,7 +78,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
-              
+
               {/* Logout button */}
               <SidebarMenuItem>
                 <SidebarMenuButton
@@ -101,9 +101,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
           <div className="container mx-auto p-4">
             {/* Make the trigger more visible on mobile */}
             <SidebarTrigger className="mb-4 md:mb-6" />
-            <div className="mt-2">
-              {children}
-            </div>
+            <div className="mt-2">{children}</div>
           </div>
         </main>
       </div>
