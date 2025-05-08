@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Label } from "@/components/ui/label";
 import { Eye, EyeOff, LogIn } from "lucide-react";
 import { toast } from "sonner";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,25 +15,26 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // This is a placeholder authentication logic
-    // In a real app, you would connect this to your authentication service
-    setTimeout(() => {
-      // Demo login check - in a real app this would be an API call
-      if (email === "admin@example.com" && password === "password") {
+    try {
+      const success = await login(email, password);
+      if (success) {
         toast.success("Login successful");
-        // Store user session or token in localStorage or state management
-        localStorage.setItem("isLoggedIn", "true");
         navigate("/");
       } else {
         toast.error("Invalid email or password");
       }
+    } catch (error) {
+      toast.error("An error occurred during login");
+      console.error(error);
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
   const toggleShowPassword = () => {
