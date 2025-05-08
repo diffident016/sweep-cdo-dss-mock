@@ -18,9 +18,13 @@ import {
   Calculator, 
   Trash2, 
   Activity, 
-  FileText 
+  FileText,
+  LogOut
 } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "@/components/ui/sonner";
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -40,6 +44,14 @@ const navigationItems = [
 
 const MainLayout = ({ children }: MainLayoutProps) => {
   const location = useLocation();
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    toast.success("You have been logged out");
+    navigate("/login");
+  };
 
   return (
     <SidebarProvider>
@@ -67,6 +79,20 @@ const MainLayout = ({ children }: MainLayoutProps) => {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+              
+              {/* Logout button */}
+              <SidebarMenuItem>
+                <SidebarMenuButton
+                  tooltip="Logout"
+                  className="hover:bg-primary/10 transition-colors duration-200 mt-auto"
+                  onClick={handleLogout}
+                >
+                  <div className="flex items-center gap-3 w-full text-destructive">
+                    <LogOut className="h-5 w-5" />
+                    <span className="font-medium">Logout</span>
+                  </div>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarContent>
         </Sidebar>
