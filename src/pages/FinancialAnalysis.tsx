@@ -155,7 +155,7 @@ const FinancialAnalysis = () => {
 
   useEffect(() => {
     setFinancials(calculateFinancials());
-  }, []);
+  }, [calculationCompleted]);
 
   return (
     <MainLayout>
@@ -273,7 +273,9 @@ const FinancialAnalysis = () => {
 
                   <Button
                     className="w-full"
-                    onClick={() => setCalculationCompleted(true)}
+                    onClick={() =>
+                      setCalculationCompleted(!calculationCompleted)
+                    }
                   >
                     Calculate Financial Metrics
                   </Button>
