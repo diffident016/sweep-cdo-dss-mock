@@ -1,4 +1,3 @@
-
 import { cn } from "@/lib/utils";
 import { 
   Sidebar,
@@ -24,7 +23,7 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 interface MainLayoutProps {
   children: React.ReactNode;
