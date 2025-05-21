@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { Database, CheckCircle2, XCircle, Loader2 } from "lucide-react";
+import { Database, CheckCircle2, XCircle, Loader2, Upload } from "lucide-react";
 import {
   Table,
   TableHeader,
@@ -343,11 +343,11 @@ const DataSourceConnector = () => {
             </div>
             <div className="grid gap-4 md:grid-cols-3">
               <Button variant="outline" className="flex items-center">
-                <FileUp className="h-4 w-4 mr-2" />
+                <Upload className="h-4 w-4 mr-2" />
                 Upload Shapefile
               </Button>
               <Button variant="outline" className="flex items-center">
-                <FileUp className="h-4 w-4 mr-2" />
+                <Upload className="h-4 w-4 mr-2" />
                 Upload GeoJSON
               </Button>
               <Button variant="outline" className="flex items-center">

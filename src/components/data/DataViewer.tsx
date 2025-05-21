@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { 
-  FileSpreadsheet,  
+  FileSpreadsheet,
   Download, 
   Search, 
   X, 
@@ -40,8 +40,31 @@ const modules = [
   { id: "policyAssistant", name: "Policy Assistant" },
 ];
 
+// Define types for our data
+type WasteData = {
+  id: number;
+  district: string;
+  wasteType: string;
+  amount: string;
+  unit: string;
+  collectionRate: number;
+  lastUpdated: string;
+};
+
+type TechData = {
+  id: number;
+  technology: string;
+  energyOutput: string;
+  unit: string;
+  co2Reduction: string;
+  capex: string;
+  lastUpdated: string;
+};
+
+type RowData = WasteData | TechData;
+
 // Mock waste analysis data
-const mockWasteData = [
+const mockWasteData: WasteData[] = [
   { id: 1, district: "District 1", wasteType: "Organic", amount: "45.2", unit: "tons/day", collectionRate: 92, lastUpdated: "2024-05-12" },
   { id: 2, district: "District 2", wasteType: "Recyclables", amount: "18.7", unit: "tons/day", collectionRate: 88, lastUpdated: "2024-05-12" },
   { id: 3, district: "District 3", wasteType: "Inert Waste", amount: "12.9", unit: "tons/day", collectionRate: 85, lastUpdated: "2024-05-12" },
@@ -50,12 +73,21 @@ const mockWasteData = [
 ];
 
 // Mock technology data
-const mockTechData = [
+const mockTechData: TechData[] = [
   { id: 1, technology: "Gasification", energyOutput: "600-900", unit: "kWh/ton", co2Reduction: "65-85", capex: "High", lastUpdated: "2024-04-22" },
   { id: 2, technology: "Anaerobic Digestion", energyOutput: "250-400", unit: "kWh/ton", co2Reduction: "60-80", capex: "Medium", lastUpdated: "2024-04-22" },
   { id: 3, technology: "Incineration", energyOutput: "500-600", unit: "kWh/ton", co2Reduction: "10-25", capex: "Medium-High", lastUpdated: "2024-04-20" },
   { id: 4, technology: "Pyrolysis", energyOutput: "400-600", unit: "kWh/ton", co2Reduction: "50-70", capex: "High", lastUpdated: "2024-04-20" },
 ];
+
+// Type guards to check data type
+const isWasteData = (data: RowData): data is WasteData => {
+  return 'district' in data && 'wasteType' in data;
+};
+
+const isTechData = (data: RowData): data is TechData => {
+  return 'technology' in data && 'energyOutput' in data;
+};
 
 const DataViewer = () => {
   const { toast } = useToast();
@@ -65,7 +97,7 @@ const DataViewer = () => {
   const [cellValue, setCellValue] = useState("");
   
   // Function to get appropriate data based on selected module
-  const getModuleData = () => {
+  const getModuleData = (): RowData[] => {
     switch (selectedModule) {
       case "wasteAnalysis":
         return mockWasteData;
@@ -191,7 +223,7 @@ const DataViewer = () => {
                   {filteredData.length > 0 ? (
                     filteredData.map((row) => (
                       <TableRow key={row.id}>
-                        {selectedModule === "wasteAnalysis" && (
+                        {selectedModule === "wasteAnalysis" && isWasteData(row) && (
                           <>
                             <TableCell>{row.district}</TableCell>
                             <TableCell>{row.wasteType}</TableCell>
@@ -248,7 +280,7 @@ const DataViewer = () => {
                           </>
                         )}
                         
-                        {selectedModule === "technologyComparison" && (
+                        {selectedModule === "technologyComparison" && isTechData(row) && (
                           <>
                             <TableCell>{row.technology}</TableCell>
                             <TableCell>

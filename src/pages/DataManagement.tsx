@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { FileUp, Database, FileSpreadsheet, ChartLine } from "lucide-react";
+import { FileSpreadsheet, Database, ChartLine, Upload } from "lucide-react";
 import DataUploader from "@/components/data/DataUploader";
 import DataViewer from "@/components/data/DataViewer";
 import DataVisualization from "@/components/data/DataVisualization";
@@ -33,7 +33,7 @@ const DataManagement = () => {
         <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
           <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="upload" className="flex items-center space-x-2">
-              <FileUp className="h-4 w-4" />
+              <Upload className="h-4 w-4" />
               <span>Upload Data</span>
             </TabsTrigger>
             <TabsTrigger value="view" className="flex items-center space-x-2">
