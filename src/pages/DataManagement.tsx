@@ -1,12 +1,13 @@
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import MainLayout from "@/components/layout/MainLayout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { FileSpreadsheet, Database, ChartLine, Upload } from "lucide-react";
+import { FileSpreadsheet, Database, ChartLine, Upload, Import } from "lucide-react";
 import DataUploader from "@/components/data/DataUploader";
 import DataViewer from "@/components/data/DataViewer";
 import DataVisualization from "@/components/data/DataVisualization";
@@ -23,11 +24,19 @@ const DataManagement = () => {
   return (
     <MainLayout>
       <div className="space-y-8">
-        <div>
-          <h1 className="text-3xl font-bold">Data Management</h1>
-          <p className="text-muted-foreground mt-2">
-            Upload, view, edit, and visualize data for all modules
-          </p>
+        <div className="flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold">Data Management</h1>
+            <p className="text-muted-foreground mt-2">
+              Upload, view, edit, and visualize data for all modules
+            </p>
+          </div>
+          <Link to="/import-data">
+            <Button className="flex items-center gap-2">
+              <Import className="h-4 w-4" />
+              <span>Advanced Import Options</span>
+            </Button>
+          </Link>
         </div>
 
         <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">

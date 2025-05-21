@@ -18,6 +18,7 @@ import FinancialAnalysis from "./pages/FinancialAnalysis";
 import MultiCriteriaAnalysis from "./pages/MultiCriteriaAnalysis";
 import EnvironmentalImpact from "./pages/EnvironmentalImpact";
 import DataManagement from "./pages/DataManagement";
+import ImportData from "./pages/ImportData";
 import UserManagement from "./pages/UserManagement";
 import Settings from "./pages/Settings";
 import Logs from "./pages/Logs";
@@ -81,6 +82,11 @@ const App = () => (
             <Route path="/data" element={
               <ProtectedRoute>
                 <DataManagement />
+              </ProtectedRoute>
+            } />
+            <Route path="/import-data" element={
+              <ProtectedRoute requiredModule="dataManagement">
+                <ImportData />
               </ProtectedRoute>
             } />
             {/* Admin Routes */}

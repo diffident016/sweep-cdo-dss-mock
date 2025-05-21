@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { FileUp, FileDown, Loader2 } from "lucide-react";
+import { FileUp, FileDown, Loader2, Import, Database } from "lucide-react";
 import { 
   Select,
   SelectContent,
@@ -47,12 +47,17 @@ const DataUploader = () => {
     setSelectedFile(file);
     
     if (file) {
-      // Basic file type validation
+      // Enhanced file type validation
       const fileExt = file.name.split('.').pop()?.toLowerCase();
       if (!['csv', 'xlsx', 'xls'].includes(fileExt || '')) {
         setValidationErrors(['Invalid file format. Please upload CSV or Excel files only.']);
       } else {
-        setValidationErrors([]);
+        // Show file size warning if needed
+        if (file.size > 10 * 1024 * 1024) { // 10MB
+          setValidationErrors(['Warning: File size exceeds 10MB. Large files may take longer to process.']);
+        } else {
+          setValidationErrors([]);
+        }
       }
     }
   };
@@ -76,7 +81,7 @@ const DataUploader = () => {
       return;
     }
 
-    if (validationErrors.length > 0) {
+    if (validationErrors.length > 0 && !validationErrors[0].startsWith('Warning')) {
       toast({
         title: "Validation Error",
         description: validationErrors[0],
@@ -105,7 +110,7 @@ const DataUploader = () => {
       
       toast({
         title: "Upload Successful",
-        description: `${selectedFile.name} has been uploaded to the ${modules.find(m => m.id === selectedModule)?.name} module.`
+        description: `${selectedFile.name} has been uploaded to the ${modules.find(m => m.id === selectedModule)?.name} module.`,
       });
       
       // Reset form after successful upload
@@ -128,7 +133,10 @@ const DataUploader = () => {
     <div className="space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle>Upload Data Files</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <Import className="h-5 w-5" />
+            <span>Import Data Files</span>
+          </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
@@ -172,7 +180,7 @@ const DataUploader = () => {
                   />
                   <Button 
                     onClick={handleFileUpload} 
-                    disabled={!selectedFile || isUploading || validationErrors.length > 0}
+                    disabled={!selectedFile || isUploading || (validationErrors.length > 0 && !validationErrors[0].startsWith('Warning'))}
                   >
                     {isUploading ? (
                       <>
@@ -195,11 +203,11 @@ const DataUploader = () => {
                 )}
                 
                 {validationErrors.length > 0 && (
-                  <ul className="text-sm text-destructive">
+                  <div className={`text-sm ${validationErrors[0].startsWith('Warning') ? 'text-yellow-600' : 'text-destructive'}`}>
                     {validationErrors.map((error, index) => (
-                      <li key={index}>{error}</li>
+                      <p key={index}>{error}</p>
                     ))}
-                  </ul>
+                  </div>
                 )}
                 
                 {isUploading && (
