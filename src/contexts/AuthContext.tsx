@@ -1,4 +1,3 @@
-
 import { createContext, useState, useContext, ReactNode, useEffect } from "react";
 
 export type UserRole = 
@@ -37,6 +36,7 @@ const roleModuleAccess: Record<UserRole, ModuleAccess> = {
     userManagement: true,
     settings: true,
     logs: true,
+    dataManagement: true,
   },
   municipal_analyst: {
     dashboard: true,
@@ -51,6 +51,7 @@ const roleModuleAccess: Record<UserRole, ModuleAccess> = {
     environmentalImpact: false,
     multiCriteriaAnalysis: false,
     policyAssistant: false,
+    dataManagement: true,
   },
   environmental_specialist: {
     dashboard: true,
@@ -65,6 +66,7 @@ const roleModuleAccess: Record<UserRole, ModuleAccess> = {
     scenarioSimulation: false,
     financialAnalysis: false,
     multiCriteriaAnalysis: false,
+    dataManagement: true,
   },
   gis_planner: {
     dashboard: true,
@@ -79,6 +81,7 @@ const roleModuleAccess: Record<UserRole, ModuleAccess> = {
     financialAnalysis: false,
     multiCriteriaAnalysis: false,
     policyAssistant: false,
+    dataManagement: true,
   },
   technologist: {
     dashboard: true,
@@ -93,6 +96,7 @@ const roleModuleAccess: Record<UserRole, ModuleAccess> = {
     financialAnalysis: false,
     environmentalImpact: false,
     policyAssistant: false,
+    dataManagement: true,
   },
   policy_maker: {
     dashboard: true,
@@ -107,6 +111,7 @@ const roleModuleAccess: Record<UserRole, ModuleAccess> = {
     siteSuggestions: false,
     financialAnalysis: false,
     environmentalImpact: false,
+    dataManagement: true,
   },
   viewer: {
     dashboard: true,
@@ -121,6 +126,7 @@ const roleModuleAccess: Record<UserRole, ModuleAccess> = {
     environmentalImpact: false,
     multiCriteriaAnalysis: false,
     policyAssistant: false,
+    dataManagement: false,
   },
 };
 
@@ -138,6 +144,7 @@ const moduleRoutes: Record<string, string> = {
   userManagement: "/users",
   settings: "/settings",
   logs: "/logs",
+  dataManagement: "/data",
 };
 
 type AuthContextType = {

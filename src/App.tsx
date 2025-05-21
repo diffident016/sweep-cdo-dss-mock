@@ -18,6 +18,9 @@ import FinancialAnalysis from "./pages/FinancialAnalysis";
 import MultiCriteriaAnalysis from "./pages/MultiCriteriaAnalysis";
 import EnvironmentalImpact from "./pages/EnvironmentalImpact";
 import DataManagement from "./pages/DataManagement";
+import UserManagement from "./pages/UserManagement";
+import Settings from "./pages/Settings";
+import Logs from "./pages/Logs";
 
 const queryClient = new QueryClient();
 
@@ -76,8 +79,24 @@ const App = () => (
               </ProtectedRoute>
             } />
             <Route path="/data" element={
-              <ProtectedRoute requiredModule="dataManagement">
+              <ProtectedRoute>
                 <DataManagement />
+              </ProtectedRoute>
+            } />
+            {/* Admin Routes */}
+            <Route path="/users" element={
+              <ProtectedRoute requiredModule="userManagement">
+                <UserManagement />
+              </ProtectedRoute>
+            } />
+            <Route path="/settings" element={
+              <ProtectedRoute requiredModule="settings">
+                <Settings />
+              </ProtectedRoute>
+            } />
+            <Route path="/logs" element={
+              <ProtectedRoute requiredModule="logs">
+                <Logs />
               </ProtectedRoute>
             } />
             <Route path="*" element={<NotFound />} />

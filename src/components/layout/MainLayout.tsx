@@ -60,6 +60,7 @@ const navigationItems: NavigationItem[] = [
   { title: "Environmental Impact", href: "/environmental", icon: Trash2, module: "environmentalImpact" },
   { title: "Multi-Criteria Analysis", href: "/mcda", icon: Activity, module: "multiCriteriaAnalysis" },
   { title: "Policy Assistant", href: "/policy", icon: FileText, module: "policyAssistant" },
+  { title: "Data Management", href: "/data", icon: Database, module: "dataManagement" },
 ];
 
 // Additional admin items that only Super Admin can see
