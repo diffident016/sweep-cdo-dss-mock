@@ -178,7 +178,8 @@ const UserManagement = () => {
                       <Badge variant="outline">{getRoleDisplayName(user.role)}</Badge>
                     </TableCell>
                     <TableCell>
-                      <Badge variant={user.status === "active" ? "success" : "secondary"}>
+                      <Badge variant={user.status === "active" ? "default" : "secondary"} 
+                        className={user.status === "active" ? "bg-green-500 hover:bg-green-600" : ""}>
                         {user.status === "active" ? "Active" : "Inactive"}
                       </Badge>
                     </TableCell>
