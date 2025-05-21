@@ -17,6 +17,7 @@ import WasteAnalysis from "./pages/WasteAnalysis";
 import FinancialAnalysis from "./pages/FinancialAnalysis";
 import MultiCriteriaAnalysis from "./pages/MultiCriteriaAnalysis";
 import EnvironmentalImpact from "./pages/EnvironmentalImpact";
+import DataManagement from "./pages/DataManagement";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +73,11 @@ const App = () => (
             <Route path="/environmental" element={
               <ProtectedRoute requiredModule="environmentalImpact">
                 <EnvironmentalImpact />
+              </ProtectedRoute>
+            } />
+            <Route path="/data" element={
+              <ProtectedRoute requiredModule="dataManagement">
+                <DataManagement />
               </ProtectedRoute>
             } />
             <Route path="*" element={<NotFound />} />
