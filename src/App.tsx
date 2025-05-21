@@ -29,15 +29,51 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="/compare" element={<ProtectedRoute><TechnologyComparison /></ProtectedRoute>} />
-            <Route path="/sites" element={<ProtectedRoute><SiteSuggestions /></ProtectedRoute>} />
-            <Route path="/policy" element={<ProtectedRoute><PolicyAssistant /></ProtectedRoute>} />
-            <Route path="/simulation" element={<ProtectedRoute><ScenarioSimulation /></ProtectedRoute>} />
-            <Route path="/waste-analysis" element={<ProtectedRoute><WasteAnalysis /></ProtectedRoute>} />
-            <Route path="/financial" element={<ProtectedRoute><FinancialAnalysis /></ProtectedRoute>} />
-            <Route path="/mcda" element={<ProtectedRoute><MultiCriteriaAnalysis /></ProtectedRoute>} />
-            <Route path="/environmental" element={<ProtectedRoute><EnvironmentalImpact /></ProtectedRoute>} />
+            <Route path="/" element={
+              <ProtectedRoute requiredModule="dashboard">
+                <Dashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/compare" element={
+              <ProtectedRoute requiredModule="technologyComparison">
+                <TechnologyComparison />
+              </ProtectedRoute>
+            } />
+            <Route path="/sites" element={
+              <ProtectedRoute requiredModule="siteSuggestions">
+                <SiteSuggestions />
+              </ProtectedRoute>
+            } />
+            <Route path="/policy" element={
+              <ProtectedRoute requiredModule="policyAssistant">
+                <PolicyAssistant />
+              </ProtectedRoute>
+            } />
+            <Route path="/simulation" element={
+              <ProtectedRoute requiredModule="scenarioSimulation">
+                <ScenarioSimulation />
+              </ProtectedRoute>
+            } />
+            <Route path="/waste-analysis" element={
+              <ProtectedRoute requiredModule="wasteAnalysis">
+                <WasteAnalysis />
+              </ProtectedRoute>
+            } />
+            <Route path="/financial" element={
+              <ProtectedRoute requiredModule="financialAnalysis">
+                <FinancialAnalysis />
+              </ProtectedRoute>
+            } />
+            <Route path="/mcda" element={
+              <ProtectedRoute requiredModule="multiCriteriaAnalysis">
+                <MultiCriteriaAnalysis />
+              </ProtectedRoute>
+            } />
+            <Route path="/environmental" element={
+              <ProtectedRoute requiredModule="environmentalImpact">
+                <EnvironmentalImpact />
+              </ProtectedRoute>
+            } />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
