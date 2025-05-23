@@ -17,6 +17,11 @@ import WasteAnalysis from "./pages/WasteAnalysis";
 import FinancialAnalysis from "./pages/FinancialAnalysis";
 import MultiCriteriaAnalysis from "./pages/MultiCriteriaAnalysis";
 import EnvironmentalImpact from "./pages/EnvironmentalImpact";
+import DataManagement from "./pages/DataManagement";
+import ImportData from "./pages/ImportData";
+import UserManagement from "./pages/UserManagement";
+import Settings from "./pages/Settings";
+import Logs from "./pages/Logs";
 
 const queryClient = new QueryClient();
 
@@ -29,15 +34,77 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="/compare" element={<ProtectedRoute><TechnologyComparison /></ProtectedRoute>} />
-            <Route path="/sites" element={<ProtectedRoute><SiteSuggestions /></ProtectedRoute>} />
-            <Route path="/policy" element={<ProtectedRoute><PolicyAssistant /></ProtectedRoute>} />
-            <Route path="/simulation" element={<ProtectedRoute><ScenarioSimulation /></ProtectedRoute>} />
-            <Route path="/waste-analysis" element={<ProtectedRoute><WasteAnalysis /></ProtectedRoute>} />
-            <Route path="/financial" element={<ProtectedRoute><FinancialAnalysis /></ProtectedRoute>} />
-            <Route path="/mcda" element={<ProtectedRoute><MultiCriteriaAnalysis /></ProtectedRoute>} />
-            <Route path="/environmental" element={<ProtectedRoute><EnvironmentalImpact /></ProtectedRoute>} />
+            <Route path="/" element={
+              <ProtectedRoute requiredModule="dashboard">
+                <Dashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/compare" element={
+              <ProtectedRoute requiredModule="technologyComparison">
+                <TechnologyComparison />
+              </ProtectedRoute>
+            } />
+            <Route path="/sites" element={
+              <ProtectedRoute requiredModule="siteSuggestions">
+                <SiteSuggestions />
+              </ProtectedRoute>
+            } />
+            <Route path="/policy" element={
+              <ProtectedRoute requiredModule="policyAssistant">
+                <PolicyAssistant />
+              </ProtectedRoute>
+            } />
+            <Route path="/simulation" element={
+              <ProtectedRoute requiredModule="scenarioSimulation">
+                <ScenarioSimulation />
+              </ProtectedRoute>
+            } />
+            <Route path="/waste-analysis" element={
+              <ProtectedRoute requiredModule="wasteAnalysis">
+                <WasteAnalysis />
+              </ProtectedRoute>
+            } />
+            <Route path="/financial" element={
+              <ProtectedRoute requiredModule="financialAnalysis">
+                <FinancialAnalysis />
+              </ProtectedRoute>
+            } />
+            <Route path="/mcda" element={
+              <ProtectedRoute requiredModule="multiCriteriaAnalysis">
+                <MultiCriteriaAnalysis />
+              </ProtectedRoute>
+            } />
+            <Route path="/environmental" element={
+              <ProtectedRoute requiredModule="environmentalImpact">
+                <EnvironmentalImpact />
+              </ProtectedRoute>
+            } />
+            <Route path="/data" element={
+              <ProtectedRoute>
+                <DataManagement />
+              </ProtectedRoute>
+            } />
+            <Route path="/import-data" element={
+              <ProtectedRoute requiredModule="dataManagement">
+                <ImportData />
+              </ProtectedRoute>
+            } />
+            {/* Admin Routes */}
+            <Route path="/users" element={
+              <ProtectedRoute requiredModule="userManagement">
+                <UserManagement />
+              </ProtectedRoute>
+            } />
+            <Route path="/settings" element={
+              <ProtectedRoute requiredModule="settings">
+                <Settings />
+              </ProtectedRoute>
+            } />
+            <Route path="/logs" element={
+              <ProtectedRoute requiredModule="logs">
+                <Logs />
+              </ProtectedRoute>
+            } />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

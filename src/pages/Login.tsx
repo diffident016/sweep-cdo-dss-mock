@@ -5,9 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Eye, EyeOff, LogIn } from "lucide-react";
+import { Eye, EyeOff, LogIn, Info } from "lucide-react";
 import { toast } from "sonner";
 import { useAuth } from "@/contexts/AuthContext";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -41,6 +42,16 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
+  const loginAccounts = [
+    { email: "admin@example.com", role: "Super Admin" },
+    { email: "analyst@example.com", role: "Municipal Analyst" },
+    { email: "env@example.com", role: "Environmental Specialist" },
+    { email: "gis@example.com", role: "GIS Planner" },
+    { email: "tech@example.com", role: "Technologist" },
+    { email: "policy@example.com", role: "Policy Maker" },
+    { email: "viewer@example.com", role: "Read-Only Viewer" },
+  ];
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <div className="w-full max-w-md">
@@ -54,7 +65,36 @@ const Login = () => {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="email">Email</Label>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          className="h-auto p-0 text-sm font-normal text-muted-foreground"
+                        >
+                          <Info className="h-4 w-4" />
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent className="max-w-sm">
+                        <div className="p-2">
+                          <p className="font-semibold mb-2">Demo Accounts:</p>
+                          <ul className="space-y-1">
+                            {loginAccounts.map((account) => (
+                              <li key={account.email} className="text-xs">
+                                <span className="font-medium">{account.email}</span> - {account.role}
+                              </li>
+                            ))}
+                          </ul>
+                          <p className="text-xs mt-2">Password for all accounts: "password"</p>
+                        </div>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </div>
                 <Input
                   id="email"
                   type="email"
